@@ -11,3 +11,6 @@ instance/*
 __pycache__/
 *.py[cod]
 *$py.class
+
+#database usernames and passwords
+secrets.py
