@@ -1,6 +1,18 @@
 {% extends 'base.html' %}
+
 {% block body %}
-<p><a href="{{ url_for('add_player')}}"> Add a new player</a></p>
+<p><a href="{{ url_for('.add_player')}}"> Add a new player</a></p>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<div id='flash'>
+  {% for message in messages %}
+  <strong>Alert!</strong> {{ message }}
+  <button type="close" value="x">
+  </button>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+</div>
 
 {% if players %}
     <table>
@@ -18,8 +30,18 @@
                 <td> {{ row.playerid }}</td>
                 <td> {{ row.first_name }}</td>
                 <td> {{ row.last_name }}</td>
-              </tr>
-              {% endfor %}
+
+                    <<td>
+          
+        </td>
+        <td>
+          <form action="/delete_player/{{ row.playerid }}" method="POST">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+          </form>
+        </td>
+
+            </tr>
+            {% endfor %}
         </tbody>
     </table>
 {% endif %}
